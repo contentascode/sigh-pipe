@@ -12,7 +12,6 @@ describe('sigh-pipe', () => {
     var stream = Bacon.constant([ new Event({ path: 'src/test.js', type: 'add', data: 'hi!' }) ]);
 
     return pipe({ stream }, 'cat').toPromise(Promise).then(events => {
-      // console.log(events)
       assert.equal(events[0].data,'hi!')
     })
 

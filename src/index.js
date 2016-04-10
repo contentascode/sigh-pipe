@@ -21,13 +21,11 @@ export default function(op, cmd) {
         child.stdin.end()
         // child.stdout.pipe(process.stdout)
 
-        child.stdout.on('data', function(d){ bufs.push(d); console.log(d)});
+        child.stdout.on('data', function(d){ bufs.push(d);});
         child.stderr.on('data', reject);
 
         child.on('close', (code, signal) => {
-
           var output = Buffer.concat(bufs).toString();
-
           resolve(_.set(evt, 'data', output))
         });
         
@@ -35,6 +33,5 @@ export default function(op, cmd) {
     }
 
     return pipe(cmd, event)
-
   })
 }
