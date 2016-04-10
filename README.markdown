@@ -1,12 +1,20 @@
-# sigh-debug
+# sigh-pipe
 
-[![build status](https://circleci.com/gh/iilab/sigh-debug.png)](https://circleci.com/gh/iilab/sigh-debug)
+[![Build Status](https://travis-ci.org/contentascode/sigh-pipe.svg?branch=master)](https://travis-ci.org/contentascode/sigh-pipe)
 
-Sigh plugin for...
+Sigh plugin to pipe events through a shell command
 
 ## Example
 
-`npm install --save-dev sigh-debug` then add something like this to your `sigh.js`:
+`npm install --save-dev sigh-pipe` then add something like this to your `sigh.js`:
 ```javascript
-// TODO: example goes here
+  pipelines['build-hercule'] = [
+    merge(
+      glob({ basePath: 'content' }, '**/*.*')
+    ),
+    debounce(500),
+    pipe('cat')
+  ]
 ```
+
+This will pipe everyfile through the unix `cat` command which is basically not doing anything to any file. 
