@@ -1,6 +1,6 @@
 {
   "name": "sigh-pipe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sigh plugin to pipe files through a unix executable.",
   "scripts": {
     "test": "sigh"
