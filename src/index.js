@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import Promise from 'bluebird'
+import path from 'path'
 import { Bacon } from 'sigh-core'
 import { mapEvents } from 'sigh-core/lib/stream'
 
@@ -9,13 +10,13 @@ export default function(op, cmd) {
       return event
 
     // console.log(event.type + ": " + event.path)
-    // console.log(typeof event.data)
+    // console.log(path.dirname(event.path))
 
     var pipe = function(cmd, evt) { 
       return new Promise(function(resolve, reject) {
         var bufs = [];
         var spawn = require('child_process').spawn;
-        var child = spawn(cmd, [], {cwd: './'});
+        var child = spawn(cmd, [], {cwd: path.dirname(event.path)});
 
         child.stdin.write(evt.data)
         child.stdin.end()
